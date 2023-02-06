@@ -1,8 +1,9 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useRef, useState} from 'react';
 
 const EventsExample: FC = () => {
     const [value, setValue] = useState<string>('')
     const [isDrag, setIsDrag] = useState<boolean>(false)
+    const inputRef = useRef<HTMLInputElement>(null)
 
     const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
@@ -15,7 +16,8 @@ const EventsExample: FC = () => {
     // }
 
     const clickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(value)
+        console.log('VALUE', value)
+        console.log(inputRef.current?.value)
     }
 
     // перетаскиваем первый квадрат
@@ -42,7 +44,8 @@ const EventsExample: FC = () => {
 
     return (
         <div>
-            <input style={{height: 32, fontSize: 24}} value={value} onChange={changeHandler} type="text"/>
+            <input style={{height: 32, fontSize: 24}} value={value} onChange={changeHandler} type="text" placeholder={'Управляемый'}/>
+            <input style={{height: 32, fontSize: 24}} ref={inputRef} type="text" placeholder={'Неуправляемый'}/>
             <button onClick={clickHandler} style={{height: 24, marginLeft: 16}}>{value}</button>
 
             <div style={{padding: 16, margin: '16px auto 0', backgroundColor: 'burlywood', borderRadius: 4}}>
