@@ -7,6 +7,11 @@ interface UserListProps {
 }
 
 const UserList: FC<UserListProps> = ({users}) => {
+
+    if (!users.length) {
+        return <div>Loading...</div>
+    }
+
     return (
         <ol>
             {users.map(user =>
