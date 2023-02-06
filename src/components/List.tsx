@@ -6,6 +6,11 @@ interface ListProps<T> {
 }
 
 function List<T>({items, renderItem}: ListProps<T>) {
+
+    if (!items.length) {
+        return <h2>Загружаю...</h2>
+    }
+
     return (
         <ol>
             {items.map(renderItem)}

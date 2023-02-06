@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
 import {IUser} from "../types/types";
+import {Link} from "react-router-dom";
 
 interface UserItemProps {
     user: IUser
@@ -8,7 +9,7 @@ interface UserItemProps {
 const UserItem: FC<UserItemProps> = ({user}) => {
     return (
         <li>
-            Имя: {user.name}. Почта: {user.email}. Город: {user.address.city}. Улица: {user.address.street}
+            Имя: <Link to={`/users/${user.id}`}>{user.name}</Link>. Почта: {user.email}. Город: {user.address.city}. Улица: {user.address.street}
         </li>
     );
 };
