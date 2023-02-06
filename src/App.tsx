@@ -5,6 +5,7 @@ import axios from "axios";
 import List from "./components/List";
 import UserItem from "./components/UserItem";
 import TodoItem from "./components/TodoItem";
+import EventsExample from "./components/EventsExample";
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
     }
 
     return (
-        <div>
+        <div style={{padding: 24}}>
             <Card onClick={(num) => console.info(num)}
                   width={'50%'}
                   height={'200px'}
@@ -43,13 +44,21 @@ function App() {
             >
                 <button>Кнопка</button>
             </Card>
+
+            <div style={{padding: 16, margin: '16px auto', backgroundColor: 'blanchedalmond', borderRadius: 4}}>
+                <EventsExample/>
+            </div>
+
             <h2>USERS:</h2>
             <List
                 items={users}
                 renderItem={(user: IUser) => <UserItem user={user} key={user.id}/>}
             />
             <h2>TODO:</h2>
-            <List items={todos} renderItem={(todo: ITodo) => <TodoItem todo={todo} key={todo.id}/>}/>
+            <List
+                items={todos}
+                renderItem={(todo: ITodo) => <TodoItem todo={todo} key={todo.id}/>}
+            />
         </div>
     );
 }
